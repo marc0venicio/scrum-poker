@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html style="font-size: 62.5%">
+  <head>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+      integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <title>Planning Poker</title>
+  </head>
+  <body>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="assets/clipboard.min.js"></script>
+    <script src="app.js"></script>
+
+    <div v-cloak class="app__main-layout" id="app">
+      <div class="app__navbar">
+        <div class="app__navbar_left"></div>
+        <div class="app__navbar_center">
+          <h1 @click="onRename()">{{ playerName }}</h1>
+        </div>
+        <div class="app__navbar_right"></div>
+      </div>
+      <div class="app__play-table">
+        <div>&nbsp;</div>
+        <div class="app__play-table_top-cards">
+          <div
+            class="app__table-card_layout"
+            v-for="(card, index) in cards"
+            :class="{'hidden': index % 2}"
+          >
+            <div
+              :class="
+                { 
+                    'app__table-card_back': card.vote && !isCardsOpen, 
+                    'app__table-card_face': card.vote === null || isCardsOpen,
+                    'app__table-card_open': card.vote && isCardsOpen
+                }"
+            >
+              <span v-if="isCardsOpen && card.vote">{{ card.vote }}</span>
+            </div>
+            <div class="app__table-card_player-name" :title="card.playerName">
+              {{ card.playerName }}
+            </div>
+          </div>
+        </div>
+        <div style="max-height: 20px;">
+          <div class="app__tasks-input">
+            <input v-model="inputTasks" type="text" name="" id="" />
+            <div class="plus" id="">
+              <i
+                @click="addTask(inputTasks)"
+                class="app__tasks-icon fa-regular fa-plus"
+              ></i>
+            </div>
+            <div v-for="task in tasks">
+              <div class="class-main cards-tasks">
+                <p>{{task.task}}</p>
+                <div class="class-icon">
+                  <i class="fa-solid fa-trash"></i>
+                  <i class=" fa-solid fa-square-check"></i>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>&nbsp;</div>
+        <div class="app__play-table_table">
+          <button
+            v-if="!isCardsOpen && !openDelayCounter"
+            class="app__play-table_table-button"
+            @click="onRevealCards()"
+          >
+            Reveal cards
+          </button>
+          <label
+            v-if="!isCardsOpen && openDelayCounter"
+            class="app__play-table_table-delay-label"
+          >
+            {{ openDelayCounter }}
+          </label>
+          <button
+            v-if="isCardsOpen"
+            class="app__play-table_table-button"
+            @click="onStartNewVoting()"
+          >
+            Start new voting
+          </button>
+        </div>
+        <div>&nbsp;</div>
+        <div>&nbsp;</div>
+        <div class="app__play-table_bottom-cards">
+          <div
+            class="app__table-card_layout"
+            v-for="(card, index) in cards"
+            :class="{'hidden': index % 2 == 0}"
+          >
+            <div
+              :class="
+            { 
+                'app__table-card_back': card.vote && !isCardsOpen, 
+                'app__table-card_face': card.vote === null || isCardsOpen,
+                'app__table-card_open': card.vote && isCardsOpen
+            }"
+            >
+              <span v-if="isCardsOpen && card.vote">{{ card.vote }}</span>
+            </div>
+            <div class="app__table-card_player-name">{{ card.playerName }}</div>
+          </div>
+        </div>
+        <div>&nbsp;</div>
+      </div>
+      <div v-if="isCardsOpen" class="app__avr-score">
+        Average: {{ averageScore }}
+        <button class="app__clipboard-btn">
+          <img src="assets/clipboard.svg" alt="Copy to clipboard" />
+        </button>
+      </div>
+
+      <div v-if="!isCardsOpen" class="app__cards-selector">
+        <ul class="app__cards-selector_list">
+          <li class="app__player-card" v-for="variant in variants">
+            <button
+              class="app__player-card_button"
+              translate="no"
+              @click="onVote(variant)"
+              :class="{ 'app__player-card_button_selected': variant === vote }"
+            >
+              <span>{{ variant }}</span>
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>

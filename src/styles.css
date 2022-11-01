@@ -1,0 +1,456 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;1,100;1,300&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
+html,
+body {
+  margin: 0px;
+  padding: 0px;
+  font-family: 'Ubuntu', sans-serif;
+  color: #fff;
+  background-color: #2c0558;
+  z-index: 0;
+}
+
+.col-2 {
+  max-width: 2rem ;
+}
+
+.app__main-layout {
+  display: flex;
+  height: 80vh;
+  padding-bottom: 100px;
+  flex-direction: column;
+  
+  color: #fff;
+}
+
+.app__navbar {
+  height: 80px;
+  width: 100%;
+}
+
+.app__play-table-container {
+  flex-grow: 1;
+}
+
+.app__play-table {
+  display: grid;
+  grid-template-areas:
+    "left top right"
+    "left table right"
+    "left bottom right";
+  grid-template-columns: 8rem 1fr 8rem;
+  grid-template-rows: auto 1fr auto;
+  max-width: 100%;
+  min-height: 38rem;
+  width: 44rem;
+  justify-content: center;
+  margin: auto;
+}
+
+.app__play-table_table {
+  align-items: center;
+  background: #1313136b;
+  border-radius: 2.8rem;
+  display: flex;
+  grid-area: table;
+  height: 16rem;
+  justify-content: center;
+  min-height: 16rem;
+  min-width: 33.8rem;
+  padding: 0 1.6rem;
+  position: relative;
+}
+
+.app__cards-selector {
+  height: 128px;
+}
+
+.app__player-card {
+  display: inline-block;
+  margin: 0 0.8rem;
+  transition: all 0.1s linear;
+  vertical-align: top;
+  white-space: nowrap;
+  box-sizing: border-box;
+  outline-color: #dd098c;
+}
+
+.app__player-card:hover {
+  margin: -0.2rem 0.8rem 0rem 0.8rem;
+}
+
+.app__player-card_button:hover {
+  background-color: rgb(70, 8, 99);
+}
+.app__player-card_button {
+  border: 2px solid #dd098c;
+  cursor: pointer;
+  outline: 0;
+  transition: all 0.09s linear;
+  border-radius: 0.8rem;
+  font-size: 19px;
+  height: 12rem;
+  width: 6.8rem;
+  color: #fff;
+  background-color: transparent;
+}
+
+.app__player-card_button_selected {
+  background-color: #dd098c;
+  color: #fff;
+  margin: -0.8rem 0rem 0rem 0rem;
+}
+
+.app__player-card_button_selected:hover {
+  background-color: #dd098c;
+  color: #fff;
+  margin: -0.8rem 0rem 0rem 0rem;
+}
+
+.app__cards-selector_list {
+  list-style: none;
+  margin: 0;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 1.6rem;
+  text-align: center;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.app__play-table_top-cards,
+.app__play-table_bottom-cards {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.app__play-table_top-cards {
+  padding-bottom: 1.6rem;
+}
+
+.app__play-table_bottom-cards {
+  padding-top: 1.6rem;
+}
+
+.app__play-table_table-button {
+  align-items: center;
+  border: 0;
+  border-radius: 0.8rem;
+  cursor: pointer;
+  display: inline-flex;
+  font-size: 1.8rem;
+  font-weight: 700;
+  height: 5.6rem;
+  letter-spacing: 0.02em;
+  outline: 0;
+  padding: 0;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.09s linear;
+  background: #8aaeda0e;
+  border: #dd098c 1px solid;
+  color: #fff;
+  padding: 0 2.4rem;
+}
+
+.app__play-table_table-delay-label {
+  align-items: center;
+  border: 0;
+  border-radius: 0.8rem;
+  display: inline-flex;
+  font-size: 2.5rem;
+  font-weight: 700;
+  height: 5.6rem;
+  letter-spacing: 0.02em;
+  outline: 0;
+  padding: 0;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.09s linear;
+  border: 0;
+  color: #3993ff;
+  padding: 0 2.4rem;
+}
+
+.app__table-card_layout {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  max-width: 100%;
+  perspective: 10rem;
+  perspective-origin: bottom;
+}
+
+.app__table-card_back {
+  align-items: center;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  background: #3993ff;
+  background: linear-gradient(
+      45deg,
+      #3993ff 12%,
+      transparent 0,
+      transparent 88%,
+      #3993ff 0
+    ),
+    linear-gradient(
+      135deg,
+      transparent 37%,
+      #1a7bf2 0,
+      #1a7bf2 63%,
+      transparent 0
+    ),
+    linear-gradient(
+      45deg,
+      transparent 37%,
+      #3993ff 0,
+      #3993ff 63%,
+      transparent 0
+    ),
+    #74b3ff;
+  background-size: 17px 17px;
+  border: 1px solid rgba(168, 174, 178, 0.4);
+  border-radius: 0.6rem;
+  box-shadow: 0 2px 4px rgb(168 174 178 / 40%);
+  display: flex;
+  height: 6rem;
+  justify-content: center;
+  overflow: hidden;
+  width: 3.5rem;
+  flex-direction: column;
+}
+
+.app__table-card_face {
+  border-radius: 0.6rem;
+  flex-shrink: 0;
+  height: 6rem;
+  width: 3.5rem;
+  border: 1px solid #3993ff;
+  color: #3993ff;
+  line-height: 6rem;
+  text-align: center;
+}
+
+.app__table-card_player-name {
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  align-items: center;
+  display: -webkit-box;
+  display: flex;
+  font-size: 1.4rem;
+  font-weight: 700;
+  justify-content: center;
+  line-height: 1.2em;
+  overflow: hidden;
+  padding-top: 0.8rem;
+  text-align: center;
+  width: 8rem;
+}
+
+.hidden {
+  display: none;
+}
+
+.app__navbar {
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+}
+
+.app__navbar_left,
+.app__navbar_right {
+  width: 16rem;
+}
+
+.app__navbar_center {
+  text-align: center;
+  flex-grow: 1;
+}
+
+.app__new-game-btn {
+  align-items: center;
+  border: 0;
+  border-radius: 0.8rem;
+  cursor: pointer;
+  display: inline-flex;
+  font-size: 1.8rem;
+  font-weight: 700;
+  height: 5.6rem;
+  letter-spacing: 0.02em;
+  outline: 0;
+  padding: 0;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.09s linear;
+  background: #3993ff;
+  border: 0;
+  color: #fff;
+  padding: 0 2.4rem;
+  margin: 1rem;
+}
+
+.app__table-card_open {
+  text-align: center;
+  font-size: 2rem;
+}
+
+.app__avr-score {
+  height: 128px;
+  text-align: center;
+  font-size: 3rem;
+}
+
+[v-cloak] {
+  display: none;
+}
+
+.app__clipboard-btn {
+  border: none;
+  background-color: inherit;
+  cursor: pointer;
+}
+
+.app__clipboard-btn img {
+  width: 22px;
+}
+
+/**
+ * Dirty hack, because we can't copy to clipboard `display: none` container 
+ * content. Using `position: absolute` and `opacity: 0` instead.
+ */
+#app__clipboard-content {
+  position: absolute;
+  opacity: 0;
+  top: 0px;
+}
+
+.app__tasks-input {
+  width: 35rem;
+  margin-left: 70px;
+  font-size: 20px;
+  position: relative;
+}
+
+.app__tasks-input label {
+  margin-bottom: 10px;
+}
+
+
+.app__tasks-input input {
+  background-color: #b6117f81;
+  height: 30px ;
+  color: #fff;
+  border: none;
+  width: 100%;
+  margin-right: 10px;
+  background: linear-gradient(65deg, #10abffa4, #b6117f81);
+  border-radius: 9999em;
+  z-index: 1;
+}
+
+.app__tasks-input input:focus {
+  box-shadow: 5px 5px 23px 5px rgba(108,13,255,0.97);
+  border: 0 none;
+  outline: 0;
+}
+
+.plus {
+  position:absolute;
+  top:0; right:0;
+  border:none;
+  background:transparent;
+  outline:none;
+  margin-top: 4px;
+  cursor: pointer;
+  display: block;
+  padding: 0px 4px;
+  z-index: 1;
+}
+
+.app__tasks-icon i {
+  position: absolute;
+  padding: 0;
+  margin-left: 10px;
+  
+}
+
+.app__tasks-input input:hover {
+  border-color: #2c0558;
+}
+
+.cards-tasks {
+  position: relative;
+  margin: 20px auto;
+  padding: 5px;
+  border: 1px solid #dd098c;
+  display: flex;
+  max-width: 100%;
+  word-break: break-all;
+  border-radius: 10px;
+  box-shadow: 5px 5px 23px 5px rgba(108,13,255,0.97);
+}
+
+.cards-tasks p {
+  width: 100%;
+  font-size: 15px;
+}
+
+.cards-tasks i {
+  color: #dd098c;
+  opacity: 0.8;
+  box-shadow: 5px 5px 23px 5px rgba(108,13,255,0.97);
+}
+
+.cards-tasks i:hover {
+  color: #dd098c;
+  opacity: 1;
+
+}
+
+.class-icon {
+  clear: both;
+  display:flex;
+  justify-content: flex-end;
+  margin-top: 88px;
+  margin-right: 10px;
+}
+
+.class-icon i {
+  margin-left: 10px;
+  margin-bottom: 5px;
+}
+/* .class-icon i:ntd-child(1){
+  position: absolute;
+  right: 1;
+  top: 1
+}
+
+.class-icon i:ntd-child(2){
+  position: absolute;
+  right: 1;
+  top: 1;
+  bottom: 0;
+} */
+
+/* .class-icon:nth-child(1) {
+  position: absolute;
+  left: 1;
+  top: 70px
+} */
+
+/* .class-icon:nth-child(2) {
+  position: absolute;
+  left: 1;
+  top: 70px
+} */
+
+
+
